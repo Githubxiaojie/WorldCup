@@ -1,10 +1,6 @@
 <template>
   <div class="my-3">
-    <div class="filter mb-3 clearfix">
-      <el-checkbox-group  v-model="checkList">
-        <el-checkbox label="显示黄牌"></el-checkbox>
-        <el-checkbox label="显示红牌"></el-checkbox>
-      </el-checkbox-group>
+    <div class="filter mb-3">
       <el-radio-group v-model="LenChecked" size="small">
         <el-radio-button v-for="item in Len" :label="item" :key="item">{{item}}</el-radio-button>
       </el-radio-group>
@@ -113,6 +109,7 @@ export default {
         type: 'json'
       })
       this.Match = res.results
+      console.log(this.Match)
     },
     handleCommand (command) {
       var Index = this.Match.findIndex(x => x.matchId === command.ID)
