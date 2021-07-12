@@ -7,26 +7,18 @@
     </div>
     <div>
       <el-table style="width: 100%" :data="Match" stripe>
-        <el-table-column v-if="LenChecked === '简体'" prop="league[0]" label="赛事"></el-table-column>
-        <el-table-column v-else-if="LenChecked === '繁體'" prop="league[1]" label="赛事" ></el-table-column>
+        <el-table-column v-if="LenChecked === '中文'" prop="league[0]" label="赛事"></el-table-column>
         <el-table-column v-else prop="league[2]" label="赛事"></el-table-column>
         <el-table-column label="时间">
           <template slot-scope="scope">
             {{scope.row.matchDate+' '+scope.row.matchTime}}
           </template>
         </el-table-column>
-        <el-table-column v-if="LenChecked === '简体'" label="主队">
+        <el-table-column v-if="LenChecked === '中文'" label="主队">
           <template slot-scope="scope">
             <el-tag type="warning" v-if="scope.row.homeYellow != 0">{{scope.row.homeYellow}}</el-tag>
             <el-tag type="danger" v-if="scope.row.homeRed != 0">{{scope.row.homeRed}}</el-tag>
             {{scope.row.home[0]}}
-          </template>
-        </el-table-column>
-        <el-table-column v-else-if="LenChecked === '繁體'" label="主队">
-          <template slot-scope="scope">
-            <el-tag type="warning" v-if="scope.row.homeYellow != 0">{{scope.row.homeYellow}}</el-tag>
-            <el-tag type="danger" v-if="scope.row.homeRed != 0">{{scope.row.homeRed}}</el-tag>
-            {{scope.row.home[1]}}
           </template>
         </el-table-column>
         <el-table-column v-else label="主队">
@@ -41,16 +33,9 @@
             {{scope.row.homeScore + ' - ' + scope.row.guestScore}}
           </template>
         </el-table-column>
-        <el-table-column v-if="LenChecked === '简体'" label="客队">
+        <el-table-column v-if="LenChecked === '中文'" label="客队">
           <template slot-scope="scope">
             {{scope.row.guest[0]}}
-            <el-tag type="danger" v-if="scope.row.guestRed != 0">{{scope.row.guestRed}}</el-tag>
-            <el-tag type="warning" v-if="scope.row.guestYellow != 0">{{scope.row.guestYellow}}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column v-else-if="LenChecked === '繁體'" label="客队">
-          <template slot-scope="scope">
-            {{scope.row.guest[1]}}
             <el-tag type="danger" v-if="scope.row.guestRed != 0">{{scope.row.guestRed}}</el-tag>
             <el-tag type="warning" v-if="scope.row.guestYellow != 0">{{scope.row.guestYellow}}</el-tag>
           </template>
@@ -92,8 +77,8 @@ export default {
   data () {
     return {
       checkList: ['显示黄牌', '显示红牌'],
-      LenChecked: '简体',
-      Len: ['简体', '繁體', 'English'],
+      LenChecked: '中文',
+      Len: ['中文', 'English'],
       Match: [],
       type: ['homeScore', 'homeRed', 'homeYellow', 'guestScore', 'guestRed', 'guestYellow']
     }
